@@ -39,9 +39,14 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "rest_framework",
+    "django_rest_passwordreset",
     "coreapi",
     "productos",
+    "registerlogin",
 ]
+
+#Custom user model
+AUTH_USER_MODEL = "registerlogin.UserCustom"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

@@ -16,10 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 from rest_framework.documentation import include_docs_urls
+
+router = routers.DefaultRouter()
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/v1/', include('productos.urls')),
-    path('docs/', include_docs_urls(title='Api Documentation'))
+    path('docs/', include_docs_urls(title='Api Documentation')),
+    path('api/', include('registerlogin.urls')),
+    path('api/', include(router.urls)),
 ]

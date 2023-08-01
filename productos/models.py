@@ -1,9 +1,12 @@
 from django.db import models
+from django.conf import settings
+
 
 # Create your models here.
 
 class ProductInfo(models.Model):
     name = models.CharField(max_length=20)
+    name_user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     quantity_avaible = models.PositiveIntegerField(default=0)
     category = models.CharField(max_length=20)
