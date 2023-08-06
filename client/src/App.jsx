@@ -2,6 +2,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ListProduct } from "./pages/ProductList";
 import { FormImputProduct } from "./pages/FormImputProduct";
+import { RegisterForm } from "./pages/RegisterForm";
 import { Navigation } from "./components/Navigation";
 import { Toaster } from "react-hot-toast";
 
@@ -14,6 +15,7 @@ export default function Product(){
             <Navigation/>    
             <Routes>
                 <Route path="/" element={<Navigate to="/Product-list"/>}/>
+                < Route path="/Form-Register" element={<RegisterForm />} />
                 <Route path="/Form-product" element={<FormImputProduct />}/>
                 <Route path="/Product-list/:id" element={<FormImputProduct />}/>
                 <Route path="/Product-list" element={<ListProduct/>} />
