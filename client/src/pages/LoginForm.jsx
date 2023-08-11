@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
+import { postLoginUser } from "../api/getregisterlogin.api";
 
 export function LoginForm() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = handleSubmit((data) => {
-        console.log(data);
+        postLoginUser(data);
     })
 
     return (

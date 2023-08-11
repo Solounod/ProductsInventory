@@ -8,6 +8,7 @@ from django_rest_passwordreset.signals import reset_password_token_created
 
 # Create your views here.
 class LoginView(APIView):
+    
     def post(self, request):
         email = request.data.get('email',None)
         password = request.data.get('password', None)

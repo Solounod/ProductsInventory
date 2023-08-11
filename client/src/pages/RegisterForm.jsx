@@ -1,15 +1,19 @@
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
+import { postRegisterUser } from "../api/getregisterlogin.api";
 
 export function RegisterForm() {
 
     const { register, handleSubmit, formState: { errors }, watch} = useForm();
 
+    const navigate = useNavigate();
     const password = useRef(null);
     password.current = watch("password", "");
 
-    const onSubmit = handleSubmit((data) => {
-        console.log(data);
+    const onSubmit = handleSubmit(async (data) => {
+        await postRegisterUser(data);
+        navigate("/Form-Login");
     })
 
     return (
@@ -27,7 +31,7 @@ export function RegisterForm() {
                     },
                     })} />
                     {errors.email && <span className="bg-red-900">{errors.email.message}</span>}
-                <input type="text" name="userName" placeholder="User name" {...register("userName", 
+                <input type="text" name="username" placeholder="User name" {...register("username", 
                     {required: {
                         value: true,
                         message: "Este campo es requerido"
@@ -48,7 +52,7 @@ export function RegisterForm() {
                     }
                     })}/>
                     {errors.password && <span className="bg-red-900">{errors.password.message}</span>}
-                <input type="text" placeholder="Confirm Password" {...register("confirmPassword", 
+                     <input type="text" placeholder="Confirm Password" {...register("confirmPassword", 
                     {
                         required: {
                             value: true,
@@ -60,7 +64,7 @@ export function RegisterForm() {
                         },
                         validate: (value) => value === password.current || "las contraseñas no coinsiden",                 
                     })}/>
-                    {errors.confirmPassword && (<span className="bg-red-900">{errors.confirmPassword.message}</span>)}
+                    {errors.confirmPassword && (<span className="bg-red-900">{errors.confirmPassword.message}</span>)} 
                 <div>
                     <button className="bg-green-900 p-3 rounded-lg w-48 mt-3 ">
                         Submit
